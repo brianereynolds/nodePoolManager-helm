@@ -1,0 +1,25 @@
+apiVersion: k8smanagers.greyridge.com/v1
+kind: NodePoolManager
+metadata:
+  labels:
+    app.kubernetes.io/name: nodepoolmanager
+    app.kubernetes.io/managed-by: kustomize
+  name: nodepoolmanager-sample
+spec:
+  subscriptionId: "3e54eb54-946e-xxxx-yyyy-d7b190cd45cf"
+  resourceGroup: "node-upgrader"
+  clusterName: "lm-cluster"
+  retryOnError: false
+  testMode: false
+  nodePools:
+    - name: "green1"
+      action: "delete"
+    - name: "green2"
+      action: "delete"
+    - name: "blue1"
+      action: "delete"
+    - name: "blue2"
+      action: "delete"
+
+
+

@@ -1,0 +1,53 @@
+apiVersion: k8smanagers.greyridge.com/v1
+kind: NodePoolManager
+metadata:
+  labels:
+    app.kubernetes.io/name: nodepoolmanager
+    app.kubernetes.io/managed-by: kustomize
+  name: nodepoolmanager-sample
+spec:
+  subscriptionId: "3e54eb54-946e-xxxx-yyyy-d7b190cd45cf"
+  resourceGroup: "node-upgrader"
+  clusterName: "lm-cluster"
+  retryOnError: false
+  testMode: false
+  nodePools:
+    - name: "green1"
+      properties: {
+        orchestratorVersion: "1.30.5",
+        vmSize: "Standard_DS2_v2",
+        enableAutoScaling: true,
+        minCount: 0,
+        maxCount: 1,
+        availabilityZones: [ "1" ]
+      }
+    - name: "green2"
+      properties: {
+        orchestratorVersion: "1.30.5",
+        vmSize: "Standard_DS2_v2",
+        enableAutoScaling: true,
+        minCount: 0,
+        maxCount: 1,
+        availabilityZones: [ "2" ]
+      }
+    - name: "blue1"
+      properties: {
+        orchestratorVersion: "1.30.5",
+        vmSize: "Standard_DS2_v2",
+        enableAutoScaling: true,
+        minCount: 0,
+        maxCount: 1,
+        availabilityZones: [ "1" ]
+      }
+    - name: "blue2"
+      properties: {
+        orchestratorVersion: "1.30.5",
+        vmSize: "Standard_DS2_v2",
+        enableAutoScaling: true,
+        minCount: 0,
+        maxCount: 1,
+        availabilityZones: [ "2" ]
+      }
+
+
+
