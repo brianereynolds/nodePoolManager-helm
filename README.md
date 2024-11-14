@@ -56,7 +56,7 @@ spec:
   
   # A list of node pools to manage
   # If the node pool does not exist - it is created
-  # If the node pool exists and the orchestratorVersion is higher - it is updated
+  # If the node pool exists - it is updated to reflect the configuration
   # If the node pool exists and the action is "delete" - the node pool is deleted
   nodePools:
     # The name of the nodepool. The name of a node pool may only contain lowercase alphanumeric characters and must begin with a lowercase letter.
