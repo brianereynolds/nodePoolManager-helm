@@ -2,7 +2,7 @@
 Node Pool Manager is used to create, update and delete node pools on an AKS cluster.
 
 ## Description
-Some applications cannot take full advantage of the Kubernetes high-availability concepts. This CRD has been designed to manage the node pools that run application workloads.
+Some applications cannot take full advantage of Kubernetes high-availability concepts. This CRD has been designed to manage the node pools that run application workloads.
 
 Based on the YAML you provide, the controller will bring the node pools to the state reflected in the configuration.
 
