@@ -117,7 +117,6 @@ spec:
 * Any node pools which are not listed in the YAML will be ignored.
 * System pools _cannot_ be created, however they _can_ be upgraded
 
-
 ### Security
 The controller users DefaultAzureCredential. The DefaultAzureCredential is a feature of the Azure Identity library that simplifies 
 authentication for applications running on Azure. It automatically selects the best available credential based on the environment 
@@ -131,16 +130,22 @@ The controller has been tested with
 The SPN details can be set when installing the helm chart. Create a values.yaml and include with -f on helm command.
 
 Example:
+
+```kubectl create secret generic azure-client-secret --from-literal=AZURE_CLIENT_SECRET=myclientsecret -n operations ```
+
 ```yaml
 controllerManager:
   deployment:
     env:
       - name: AZURE_CLIENT_ID
         value: aaa-bbb-ccc
-      - name: AZURE_CLIENT_SECRET
-        value: my-secret
       - name: AZURE_TENANT_ID
         value: xxx-yyy-zzz
+      - name: AZURE_CLIENT_SECRET
+        valueFrom:
+          secretKeyRef:
+            name: azure-client-secret
+            key: AZURE_CLIENT_SECRET
 ```
 
 Assign the role _Azure Kubernetes Service Contributor Role_ to the MI which matches the details above.
