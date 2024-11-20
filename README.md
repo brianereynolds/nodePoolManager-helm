@@ -20,16 +20,26 @@ helm repo add k8smanagers https://k8smanagers.blob.core.windows.net/helm/
 helm install nodepoolmanager k8smanagers/nodepoolmanager -n operations
 ```
 
-If required, the helm chart can use private image repository/tag and include image pull secrets. Create a values.yaml and include with -f on helm command.
+To customize the values, create a values.yaml and including with -f on helm command. Supported
+
+* private image repository
+* custom image tag
+* custom image pull secrets
+* custom labels for Deployment
+* additional environment variables (see security section below)
 
 Example:
 ```yaml
 controllerManager:
+  deployment:
+    customLabels:                                # Custom labels
+      custom1: value1
+      custom2: value2
   manager:
-    repository: my-image-repo/node-pool-manager
-    tag: specific-tag
+    repository: my-image-repo/node-pool-manager  # Private image repo
+    tag: specific-tag                            # Custom image tag
 imagePullSecrets:
-  - name: my-image-pull-secret
+  - name: my-image-pull-secret                   # Custom image pull secret
 ```
 
 #### Verification
