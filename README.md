@@ -6,6 +6,25 @@ Some applications cannot take full advantage of Kubernetes high-availability con
 
 Based on the YAML you provide, the controller will bring the node pools to the state reflected in the configuration.
 
+The CRD can be useful for managing different versions of node pools. This allows the AKS control plan to be upgraded independently of the node pools.
+
+To list the valid node pool versions using Azure CLI, you can use the az aks get-upgrades command
+
+```
+az aks get-upgrades --resource-group <resource-group> --name <cluster-name>
+```
+[Reference](https://learn.microsoft.com/en-us/azure/aks/manage-node-pools)
+
+To upgrade control plan only:
+```
+az aks upgrade \
+   --resource-group <ResourceGroupName> --name <AKSClusterName> \
+   --control-plane-only \
+   --kubernetes-version <KubernetesVersion>
+```
+[Reference](https://learn.microsoft.com/en-us/azure/architecture/operator-guides/aks/aks-upgrade-practices)
+
+
 ## Getting Started
 
 ### Prerequisites
@@ -20,7 +39,7 @@ helm repo add k8smanagers https://k8smanagers.blob.core.windows.net/helm/
 helm install nodepoolmanager k8smanagers/nodepoolmanager -n operations
 ```
 
-To customize the values, create a values.yaml and including with -f on helm command. Supported
+If custom values are required in the helm chart, create a values.yaml and including with -f on helm command. Supported
 
 * private image repository
 * custom image tag
@@ -171,7 +190,12 @@ This controller has been written using kubebuilder https://book.kubebuilder.io
 I would love to have some contributors to the project. Contact me on github
 
 ### Uninstall
-Uninstall the helm chart
+To remove the instance
+```
+helm delete NodePoolManager nodepoolmanager-sample
+```
+
+To fully uninstall the helm chart
 ```
 helm uninstall -n operations nodepoolmanager
 ```
