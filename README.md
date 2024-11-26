@@ -6,7 +6,7 @@ Some applications cannot take full advantage of Kubernetes high-availability con
 
 Based on the YAML you provide, the controller will bring the node pools to the state reflected in the configuration.
 
-The CRD can be useful for managing different versions of node pools. This allows the AKS control plan to be upgraded independently of the node pools.
+The CRD can be useful for managing different versions of node pools. This allows the AKS control plan to be upgraded independently of the node pools and subsequently move workloads around to newly upgraded node pools. 
 
 To list the valid node pool versions using Azure CLI, you can use the az aks get-upgrades command
 
