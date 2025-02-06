@@ -192,7 +192,7 @@ I would love to have some contributors to the project. Contact me on github
 ### Uninstall
 To remove the instance
 ```
-helm delete NodePoolManager nodepoolmanager-sample
+kubectl delete NodePoolManager nodepoolmanager-sample
 ```
 
 To fully uninstall the helm chart
